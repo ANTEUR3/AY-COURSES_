@@ -7,8 +7,10 @@ import Roadmap from "./components/Roadmap";
 import {Learn  , Exams ,Apply,Competition } from "./components/Roadmap";
 import Features  from "./components/Features";
 import { useMemo } from "react";
-import { features } from "./Data";
+import { features, PopularCourses_ } from "./Data";
 import { FeaturesCard } from "./components/Features";
+import PopularCourses from './components/PopularCourses';
+import { PopularCoursesCard } from "./components/PopularCourses";
 
 export default function Home() {
 
@@ -19,6 +21,12 @@ export default function Home() {
           return <FeaturesCard feature={feature} key={feature.id}/>
     })
   },[features])
+
+  const displayPopularCourses=useMemo(()=>{
+    return PopularCourses_.map((course,key)=>{
+          return <PopularCoursesCard course={course} key={course.id}/>
+    })
+  },[PopularCourses_])
   return (
     <div className=" ">
         <TopHomePart />
@@ -31,6 +39,9 @@ export default function Home() {
         <Features>
           {displayCards}
         </Features>
+        <PopularCourses >
+            {displayPopularCourses}
+        </PopularCourses>
         
     </div>
   );

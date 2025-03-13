@@ -5,7 +5,8 @@ import learn from "../../../public/Learn.jpg"
 import exam from "../../../public/Exam.png"
 import logo from '../../../public/Logo.png'
 import apply from '../../../public/apply.jpg'
-import competition from '../../../public/boyCompetition.jpg'
+import competition from '../../../public/HomeImage.png'
+
 
 import Image from "next/image";
 type props={

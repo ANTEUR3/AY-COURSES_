@@ -6,7 +6,7 @@ import Link from 'next/link';
 export  const   NavBar=()=>{
  
 
-    return <div className="w-full lg:px-[90px] flex justify-between  items-center fixed bg-gray-200">
+    return <div className="w-full lg:px-[90px] flex justify-between  items-center fixed bg-gray-200 z-10">
 
            <div className="flex justify-start items-center lg:gap-x-[30px]">
             <div className='flex justify-start items-center gap-x-[-10px]'>

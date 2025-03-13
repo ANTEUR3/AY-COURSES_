@@ -10,6 +10,8 @@ import lamp from '../../../public/lamp.png'
 import cs from '../../../public/CS.png'
 import js from '../../../public/JS.png'
 import Dtabases from '../../../public/Databases.png'
+import HomeImage from '../../../public/HomeImage.png'
+import HomeImage2 from '../../../public/landingImage.png'
 
 type Props = {}
 
@@ -54,20 +56,20 @@ const LeftPart=()=>{
 
 
 const RightPart=()=>{
-     return  <Image src={student} alt='' className='-translate-y-[130px] -translate-x-[ 80px]   ' />
+     return  <Image src={HomeImage2} alt='' className='-translate-y-[150px] -translate-x-[ 80px]   ' />
      
 }
 
 const GoogleMeet=()=>{
-    return <Image src={googleMeet} className='absolute top-[150px] right-[170px] w-[70px]  rounded-full' alt='' />
+    return <Image src={googleMeet} className='absolute top-[100px] right-[80px] w-[70px]  rounded-full' alt='' />
 }
 
 const Gmail=()=>{
-    return <Image src={gmail} className='absolute top-[200px] right-[460px] w-[70px]  rounded-full' alt='' />
+    return <Image src={gmail} className='absolute top-[200px] right-[500px] w-[70px]  rounded-full' alt='' />
 }
 
 const Lamp=()=>{
-    return <Image src={lamp} className='absolute top-[280px] right-[550px] w-[50px]  rounded-full' alt='' />
+    return <Image src={lamp} className='absolute top-[280px] right-[630px] w-[50px]  rounded-full' alt='' />
 }
 const CS=()=>{
     return <Image src={cs} className='absolute top-[120px] right-[600px] w-[80px]  rounded-full' alt='' />
