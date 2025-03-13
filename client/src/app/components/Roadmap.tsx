@@ -35,7 +35,7 @@ export default Roadmap;
 export const Learn=()=>{
     return <div className="col-span-1 relative lg:py-1 gap-y-2 pl-3 lg:rounded-lg border-2 border-gray-500 shadow-lg lg:pb-4">
               <h1 className="lg:text-xl font-bold mx-auto">Learn </h1>
-              <p className="lg:font-semibold text-md text-gray-500 lg:w-[72%]">Many courses are offer in our platform to enhance your knewledge in the computer sciences modules</p>
+              <p className="lg:font-semibold text-md text-gray-500 lg:w-[72%]">Many courses are offer in our platform to enhance your knowledge in the computer sciences modules</p>
               <Image src={learn} alt="" className="absolute w-[100px] bottom-2 right-2 rounded-lg" />
     </div>
 }
