@@ -17,7 +17,10 @@ type Props = {}
 
 const TopHomePart = (props: Props) => {
   return (
-    <div className='flex justify-start items-start lg:px-[100px] h-screen lg:pt-[170px]'>
+    <div className='flex justify-start items-start lg:px-[100px] h-screen lg:pt-[170px]  z-3'>
+       
+       <div className="absolute inset-0  opacity-99 bg-center bg-[url('/marocan2.png')] backdrop-blur-md z-0">
+       </div>
         <LeftPart />
         <RightPart />
         <GoogleMeet />
@@ -26,6 +29,7 @@ const TopHomePart = (props: Props) => {
         <CS />
         <JS />
         <Databases />
+        
     </div>
   )
 }
@@ -33,7 +37,7 @@ const TopHomePart = (props: Props) => {
 export default TopHomePart
 
 const LeftPart=()=>{
-    return <div className='w-2/3 '>
+    return <div className='w-2/3 z-5'>
           <div className=' flex justify-start items-center gap-x-2 mb-2'>
             <p className='text-green-700 fond-black text-3xl'>E-Learning Platform</p>
           </div>

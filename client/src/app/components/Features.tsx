@@ -33,7 +33,7 @@ export default Features;
 
 export const FeaturesCard = ({ feature }: { feature: featureProps }) => {
   return (
-    <div className=" lg:pt-[8px] border border-gray-200 shadow-3xl  lg:px-[20px] rounded-lg relative lg:pb-[60px]">
+    <div className=" lg:pt-[8px] border border-gray-200 shadow-3xl  lg:px-[20px] rounded-lg relative lg:pb-[60px] lg:mb-5">
       <Image
         src={feature.image}
         alt=""

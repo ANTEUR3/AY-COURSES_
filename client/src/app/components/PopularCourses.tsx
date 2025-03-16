@@ -37,12 +37,12 @@ const PopularCourses = ({ children }: Props) => {
 export default PopularCourses;
 
 export const PopularCoursesCard = ({ course }: { course: course }) => {
-    return  <div className="relative lg:px-[10px] lg:py-[10px] border-2 border-gray-600 rounded-xl flex items-center flex-col lg:pb-[100px]">
+    return  <div className="relative lg:px-[10px] lg:py-[10px] border-2 border-gray-600 rounded-xl flex items-center flex-col lg:pb-[100px] lg:mb-5">
     <Image src={course.image} alt="" className="lg:mb-3 rounded-xl lg:h-[200px] lg:w-[80%]"/>
     <p className="text-gray-600 lg:text-md lg:mb-3  ">{course.description}</p>
     <div className=" w-full absolute bottom-2">
     <div className="flex flex-col justify-start items-center gap-x-3 pb-2 ">
-       <FaUserCircle className="text-blue-700 text-2xl" />
+       <FaUserCircle className="text-green-600 text-2xl" />
        <p className="font-semibold text-gray-800">{course.publisher}</p>
     </div>
     <div className="w-full flex justify-start items-center gap-x-3 px-5">
@@ -53,7 +53,7 @@ export const PopularCoursesCard = ({ course }: { course: course }) => {
         <Rating numberT={course.views}>
           <IoEyeOutline className="text-xl text-gray-600"/>
         </Rating>
-        <Link href={'/'} className="rounded-lg    bg-white text-green-600 font-semibold flex justify-start items-center gap-x-1 border text-sm pr-4">
+        <Link href={'/'} className="rounded-lg    bg-white text-green-600 font-semibold flex justify-start items-center gap-x-1 border text-sm pr-4 hover:translate-x-[8px] duration-100">
         <Image src={logo} alt="" className="w-[40px] h-[35px] " />
 
         View

@@ -15,6 +15,9 @@ import { StudentCard } from "./components/BestStudents";
 import BestStudents from "./components/BestStudents";
 import { student } from "./components/BestStudents";
 import {BestStudents_} from './Data'
+import { useEffect } from "react";
+import { getCourses } from "./getData";
+
 export default function Home() {
 
  
@@ -37,21 +40,33 @@ export default function Home() {
     })
   },[BestStudents_])
 
+ 
+  useEffect(()=>{
+   const data=getCourses()
+   console.log(data)
+   
+  },[])
+
   return (
     <div className=" ">
         <TopHomePart />
+        
+
         <Roadmap>
            <Learn />
            <Exams />
            <Apply />
            <Competition />
         </Roadmap>
+
         <Features>
           {displayCards}
         </Features>
+
         <PopularCourses >
             {displayPopularCourses}
         </PopularCourses>
+        
         <BestStudents >
           {displayBestStudents}
         </BestStudents>

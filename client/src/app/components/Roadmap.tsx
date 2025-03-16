@@ -14,7 +14,7 @@ type props={
 }
 
 const Roadmap=({children}:props)=>{
-return <div className="lg:pb-5">
+return <div className="lg:pb-5 lg:mb-5">
             <div className="w-full flex justify-center items-center gap-x-3 pb-4  "> 
                 <Image src={logo} alt="" className="w-[80px] border-2 " />
                 <h1 className="text-4xl font-bold text-gray-800  ">Your roadmap in <span className="text-green-600"> AY-SCHOOL</span></h1>
