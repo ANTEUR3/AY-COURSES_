@@ -68,7 +68,7 @@ export const PopularCoursesCard = ({ course }: { course: course }) => {
   
 };
 
-const Rating = (props: { children: ReactNode; numberT: number }) => {
+export const Rating = (props: { children: ReactNode; numberT: number }) => {
   return (
     <div className=" flex justify-end items-center gap-x-1">
       {props.children}
