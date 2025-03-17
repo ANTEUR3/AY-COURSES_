@@ -5,14 +5,14 @@ type Props = {
   children: ReactNode;
 }
 export interface CourseCategoryProps{
-  item:number,
-  setItem:React.Dispatch<React.SetStateAction<number>>;
+  item:string,
+  setItem:React.Dispatch<React.SetStateAction<string>>;
   
 }
 export const CourseCategoryContext=createContext<CourseCategoryProps | null>(null);
 
 const ItemContext = ({children}: Props) => {
-  const [item,setItem]=useState<number >(0);
+  const [item,setItem]=useState<string >('Home');
   return (
     <CourseCategoryContext.Provider value={{item,setItem}}>
       {children}

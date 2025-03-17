@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar ,{NavItem} from "./components/navBar";
 import Footer from "./components/Footer";
+import WrapComponent from "./components/wrapComponent";
  
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +30,22 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <WrapComponent >
         <NavBar >
-          <NavItem href="/" index={0} name='Home' />
-          <NavItem href="/Courses" index={1} name='Courses' />
-          <NavItem href="/" index={2} name='Contacts' />
+           <NavItem href="/" index={0} name='Home' />
+           <NavItem href="/Courses" index={1} name='Courses' />
+           <NavItem href="/" index={2} name='Contacts' />
           </NavBar>
-        {children}
+         
+            {children}
+
+        </WrapComponent>
+        
+       
+
+         
         <Footer />
+       
       </body>
     </html>
   );

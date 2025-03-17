@@ -11,18 +11,7 @@ export interface NavItemContextType{
     setItem:React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const  NavItemContext =createContext<NavItemContextType | null>(null);
-const NavContext = ({children}: Props) => {
-
-    const [item,setItem]=useState<number >(0);
-  return (
-    <NavItemContext.Provider value={{item,setItem}}>
-        {children}
-        </NavItemContext.Provider>
-  )
-}
-
-export default NavContext
+ const  NavItemContext =createContext<NavItemContextType | null>(null);
 
 
 export const useNavContext=()=>{
@@ -32,3 +21,5 @@ export const useNavContext=()=>{
     }
     return context
 }
+
+export default NavItemContext;

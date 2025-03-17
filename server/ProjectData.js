@@ -53,7 +53,7 @@ export const Courses=[
     {
         id: 4,
         title: 'Laravel 12 tutorial',
-        description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
+        description: 'mmmmm ',
         likes: 123,
         views: 209,
         publisher: 'moosh hamedani ',
@@ -62,7 +62,7 @@ export const Courses=[
     {
         id: 5,
         title: 'next js 15 crash course',
-        description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
+        description: 'backend Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
         likes: 123,
         views: 209,
         publisher: 'oussama el-zero ',

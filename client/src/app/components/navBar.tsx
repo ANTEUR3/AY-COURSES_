@@ -4,7 +4,7 @@ import logo from '../../../public/Logo.png'
 import { IoMdSearch } from "react-icons/io";
 import Link from 'next/link';
 import { ReactNode, useContext } from 'react';
-import NavContext, {  useNavContext } from '../Context/NavItemsContext';
+import  {  useNavContext } from '../Context/NavItemsContext';
 
 export  const   NavBar=({children}:{children:ReactNode})=>{
  
@@ -18,9 +18,9 @@ export  const   NavBar=({children}:{children:ReactNode})=>{
 
             </div>
               <div className="flex justify-start items-center lg:gap-x-[30px] font-semibold lg:text-lg ">
-                <NavContext>
+                
                   {children}
-                </NavContext>
+                
               </div>
 
            </div>

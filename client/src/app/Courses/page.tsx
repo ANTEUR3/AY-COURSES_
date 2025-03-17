@@ -12,22 +12,30 @@ import { BiSolidLike } from "react-icons/bi";
 import Link from 'next/link'
 import { CourseCategoryContext, CourseCategoryProps, useItemContext } from './Context'
 import ItemContext from './Context'
+import { useNavContext } from '../Context/NavItemsContext'
 
 type Props = {}
 
 const page = (props: Props) => {
 
     const [courses,setCourses]=useState<courseType[]>();
+    const context=useNavContext();
 
     useEffect(()=>{
         getCourses().then((courses)=>{
             setCourses(courses)
         })
+        context.setItem(1);
+       
     },[])
+    useEffect(()=>{
+        console.log(context.item)
+    },[context])
    
    
 
   return (
+    <ItemContext >
     <div className='lg:pt-[80px] lg:px-[90px]'>
         <div className=' w-full flex justify-start items-center lg:gap-x-3 lg:pb-4'>
             <Image src={logo} alt='' className='lg:w-[70px] lg:h-[70px]' />
@@ -35,15 +43,17 @@ const page = (props: Props) => {
         </div>  
        <SearchBar/>
        <FilterBar >
-        <ItemContext >
-                <CourseCategory index={0} category={'all Courses'} />
-                <CourseCategory index={1} category={'backend courses'} />
-                <CourseCategory index={2} category={'frontend courses'} />
-                <CourseCategory index={3} category={'AI courses'} />
-        </ItemContext>
+                <CourseCategory  category={'all Courses'} />
+                <CourseCategory  category={'backend courses'} />
+                <CourseCategory category={'frontend courses'} />
+                <CourseCategory  category={'AI courses'} />
+                <CourseCategory  category={'Flutter courses'} />
         </ FilterBar >
-        <Courses courses={courses}/>
+        
+            <Courses courses={courses}/>
+        
     </div>
+    </ItemContext>
   )
 }
 
@@ -89,19 +99,46 @@ const FilterBar=({children}:{children:ReactNode})=>{
     </div>
     
 }
-const CourseCategory=({category,index}:{category:string,index:number})=>{
+const CourseCategory=({category}:{category:string})=>{
     const context=useItemContext();
+
     
-     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==index ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(index)}}>
+    
+     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==category ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(category)}}>
          <p>{category}</p>
     </div>
 
 }
 
 const Courses=({courses}:{courses:courseType[] | undefined})=>{
-    const displayCourses=useMemo(()=>{
+    const [filtredCourses,setFiltredCourses]=useState<courseType[]>();
+    const context=useItemContext();
+    useEffect(()=>{
         if(courses){
-            return courses.map((course:courseType,key):ReactNode=>{
+            setFiltredCourses(courses)
+        }
+    },[courses])
+    useEffect(()=>{
+      
+    },[])
+    useEffect(()=>{
+        if(context.item ==="all Courses"){
+            setFiltredCourses(courses);
+        }
+        else{
+            const category=context.item.split(' ')[0].toLowerCase();
+            const filtred=courses?.filter((course)=> course.title.toLowerCase().includes(category) || course.description.toLowerCase().includes(category))
+            setFiltredCourses(filtred)
+        }
+        console.log(context.item)
+    },[context.item])
+
+    const displayCourses=useMemo(()=>{
+
+
+        if(filtredCourses){
+
+            return filtredCourses.map((course:courseType,key):ReactNode=>{
                 return <div className="col-span-1 lg:rounded-lg mb-10   " key={course.id} >
                       <img src={course.image} alt='' className='lg:w-full lg:h-[150px] lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
                       <div className='w-full lg:px-[10px] lg:py-[5px] '>
@@ -128,8 +165,9 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
             return ''
         }
         
-    },[courses])
+    },[filtredCourses])
     return <div className='lg:w-full lg:grid lg:grid-cols-4 lg:gap-[30px] lg:pt-[30px]'>
+        
                {displayCourses}
     </div>
 }
