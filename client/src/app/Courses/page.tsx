@@ -91,7 +91,7 @@ const FilterBar=({children}:{children:ReactNode})=>{
 }
 
 const CourseCategory=({category,index}:{category:string,index:number})=>{
-     return <div className='lg:px-[6px]  lg:py-[2px] text-white  lg:text-md bg-green-600'>
+     return <div className='lg:px-[8px]  lg:py-[2px] text-green-600  lg:text-md bg-white border border-green-600'>
          <p>{category}</p>
     </div>
 
@@ -116,7 +116,7 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
                                 </Rating>
                            </div>
                       </div>
-                      <Link href={''} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-start items-center lg:w-[70%] mx-auto lg:px-[10px]'>
+                      <Link href={''} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
                          <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
                          <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
                       </Link>

@@ -29,8 +29,8 @@ export const Courses=[
         description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
         likes: 123,
         views: 209,
-        publisher: 'ANTEUR younes',
-        image: 'https://ellipsiseducation.com/wp-content/uploads/2023/02/javascript-736400_1280.png',
+        publisher: 'anteur younes',
+        image: 'https://i.pinimg.com/736x/65/00/15/650015861555389db8196b4deac90ac6.jpg',
     },
     {
         id: 2,
@@ -38,8 +38,8 @@ export const Courses=[
         description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
         likes: 123,
         views: 209,
-        publisher: 'ANTEUR younes',
-        image: 'https://i.pinimg.com/736x/fa/e6/c7/fae6c75e1ae68ae98aabaf210856319c.jpg',
+        publisher: 'free code camp',
+        image: 'https://i.pinimg.com/736x/ff/59/22/ff59222f8b49a24c5e08c492af7dde79.jpg',
     },
     {
         id: 3,
@@ -47,7 +47,7 @@ export const Courses=[
         description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
         likes: 123,
         views: 209,
-        publisher: 'ANTEUR younes',
+        publisher: 'code arabs',
         image: 'https://i.pinimg.com/736x/92/9d/39/929d39bf82fb981237927b55d4e9d88f.jpg',
     },
     {
@@ -58,5 +58,14 @@ export const Courses=[
         views: 209,
         publisher: 'moosh hamedani ',
         image: 'https://i.pinimg.com/736x/42/ce/60/42ce60609179ef814591e4221497ff69.jpg',
+    },
+    {
+        id: 5,
+        title: 'next js 15 crash course',
+        description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
+        likes: 123,
+        views: 209,
+        publisher: 'oussama el-zero ',
+        image: 'https://i.pinimg.com/736x/a4/52/ea/a452eae371f079b141494c5aff07a140.jpg',
     },
 ]
