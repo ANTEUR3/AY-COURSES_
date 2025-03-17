@@ -1,5 +1,6 @@
 "use client"
-import React ,{ReactNode, useEffect,useMemo,useState} from 'react'
+import React ,{ReactNode, useContext, useEffect,useMemo,useState} from 'react'
+
 import { getCourses } from '../getData'
 import Image from 'next/image'
 import logo from '../../../public/Logo.png'
@@ -9,6 +10,9 @@ import { courseType } from '../types'
 import { Rating } from '../components/PopularCourses'
 import { BiSolidLike } from "react-icons/bi";
 import Link from 'next/link'
+import { CourseCategoryContext, CourseCategoryProps, useItemContext } from './Context'
+import ItemContext from './Context'
+
 type Props = {}
 
 const page = (props: Props) => {
@@ -31,13 +35,14 @@ const page = (props: Props) => {
         </div>  
        <SearchBar/>
        <FilterBar >
+        <ItemContext >
                 <CourseCategory index={0} category={'all Courses'} />
                 <CourseCategory index={1} category={'backend courses'} />
                 <CourseCategory index={2} category={'frontend courses'} />
                 <CourseCategory index={3} category={'AI courses'} />
-
-            </ FilterBar >
-            <Courses courses={courses}/>
+        </ItemContext>
+        </ FilterBar >
+        <Courses courses={courses}/>
     </div>
   )
 }
@@ -45,25 +50,20 @@ const page = (props: Props) => {
 export default page
 
 const SearchBar=()=>{
-    return <div className='lg:px-[20px] lg:py-[30px] lg:h-[200px] lg:rounded-lg bg-gray-100 flex justify-between items-start relative'>
+    return <div 
+            className='lg:px-[20px] lg:py-[30px] lg:h-[200px] lg:rounded-lg bg-gray-100 flex justify-between items-start relative'>
             <SearchBarRightPart />
-            <SearchBarLeftPart />
-            
-
-
-        
-    </div>
+            <SearchBarLeftPart /> 
+          </div>
 }
 
 const SearchBarRightPart=()=>{
     return <div className='lg:w-[45%] '>
         <h1 className='lg:font-semibold lg:text-xl lg:mb-[20px]'>What do you want to learn today ?</h1>
          <div className='lg:w-full relative bg-white lg:py-1 rounded-lg flex justify-start items-center lg:px-[10px] border border-gray-300'>
-            
             <input type="text" name="" id=""  className='w-[90%] lg:py-1 lg:px-2 border-transparent '/>
              <div className='absolute right-1 px-2 py-2 top-[50%] -translate-y-[50%] bg-green-600  rounded-lg '>
              <FaSearch className='lg:text-xl text-white ' />
-
              </div>
          </div>
          <div className='lg:w-full flex justify-start items-center gap-x-4 lg:mt-[20px]'>
@@ -89,9 +89,10 @@ const FilterBar=({children}:{children:ReactNode})=>{
     </div>
     
 }
-
 const CourseCategory=({category,index}:{category:string,index:number})=>{
-     return <div className='lg:px-[8px]  lg:py-[2px] text-green-600  lg:text-md bg-white border border-green-600'>
+    const context=useItemContext();
+    
+     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==index ? 'text-white bg-green-600':'text-green-600 bg-white'}`} onClick={()=>{context.setItem(index)}}>
          <p>{category}</p>
     </div>
 
@@ -111,7 +112,7 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
                             <Rating numberT={course.likes}>
                                 <BiSolidLike className='text-xl text-gray-600' />
                                 </Rating>
-                                <Rating numberT={course.likes}>
+                                <Rating numberT={course.views}>
                                 <BiSolidLike className='text-xl text-gray-600' />
                                 </Rating>
                            </div>
@@ -121,8 +122,6 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
                          <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
                       </Link>
                       </div>
-                      
-
                 </div>
             })
         }else{

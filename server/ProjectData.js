@@ -68,4 +68,13 @@ export const Courses=[
         publisher: 'oussama el-zero ',
         image: 'https://i.pinimg.com/736x/a4/52/ea/a452eae371f079b141494c5aff07a140.jpg',
     },
+    {
+        id: 6,
+        title: 'Flutter ',
+        description: 'Master modern JavaScript fundamentals from ES6+ syntax to asynchronous programming with promises and async/await. ',
+        likes: 110,
+        views: 300,
+        publisher: 'oussama el-zero ',
+        image: 'https://i.pinimg.com/736x/6f/aa/02/6faa024fb0f12cd64c898e3e99ee3b75.jpg',
+    },
 ]
