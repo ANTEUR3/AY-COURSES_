@@ -92,7 +92,7 @@ const FilterBar=({children}:{children:ReactNode})=>{
 const CourseCategory=({category,index}:{category:string,index:number})=>{
     const context=useItemContext();
     
-     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==index ? 'text-white bg-green-600':'text-green-600 bg-white'}`} onClick={()=>{context.setItem(index)}}>
+     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==index ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(index)}}>
          <p>{category}</p>
     </div>
 

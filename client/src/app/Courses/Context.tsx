@@ -1,4 +1,3 @@
-import { error } from 'node:console';
 import React ,{Dispatch, ReactNode, useContext, useState} from 'react'
 import { createContext } from 'react';
 
@@ -13,10 +12,7 @@ export interface CourseCategoryProps{
 export const CourseCategoryContext=createContext<CourseCategoryProps | null>(null);
 
 const ItemContext = ({children}: Props) => {
-
   const [item,setItem]=useState<number >(0);
-
- 
   return (
     <CourseCategoryContext.Provider value={{item,setItem}}>
       {children}

@@ -1,11 +1,13 @@
+"use client"
 import Image from 'next/image';
 import logo from '../../../public/Logo.png'
 import { IoMdSearch } from "react-icons/io";
 import Link from 'next/link';
+import { ReactNode, useContext } from 'react';
+import NavContext, {  useNavContext } from '../Context/NavItemsContext';
 
-export  const   NavBar=()=>{
+export  const   NavBar=({children}:{children:ReactNode})=>{
  
-
     return <div className="w-full lg:px-[90px] flex justify-between  items-center fixed bg-white z-10">
 
            <div className="flex justify-start items-center lg:gap-x-[30px]">
@@ -16,10 +18,9 @@ export  const   NavBar=()=>{
 
             </div>
               <div className="flex justify-start items-center lg:gap-x-[30px] font-semibold lg:text-lg ">
-                 <Link href={"/"} className='cursor-pointer'>Home</Link>
-                 <Link href={"/"} className='cursor-pointer'>About</Link>
-                 <Link href={"/Courses"} className='cursor-pointer'>Courses</Link>
-                 <Link href={"/students"} className='cursor-pointer'>Students</Link>
+                <NavContext>
+                  {children}
+                </NavContext>
               </div>
 
            </div>
@@ -33,3 +34,12 @@ export  const   NavBar=()=>{
 }
 
 export default NavBar;
+
+export const NavItem=({href,name,index}:{href:string,name:string,index:number})=> {
+   const context=useNavContext();
+
+   return <Link onClick={()=>{context.setItem(index)}} href={href} className={`cursor-pointer ${index == context.item ?'text-green-600':'text-black'} `}>
+      {name}
+   </Link>
+
+}
