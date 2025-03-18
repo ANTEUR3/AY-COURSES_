@@ -1,5 +1,5 @@
 "use client"
-import React ,{ReactNode, useContext, useEffect,useMemo,useState} from 'react'
+import React ,{ReactNode, useCallback, useContext, useEffect,useMemo,useState} from 'react'
 
 import { getCourses } from '../getData'
 import Image from 'next/image'
@@ -10,8 +10,7 @@ import { courseType } from '../types'
 import { Rating } from '../components/PopularCourses'
 import { BiSolidLike } from "react-icons/bi";
 import Link from 'next/link'
-import { CourseCategoryContext, CourseCategoryProps, useItemContext } from './Context'
-import ItemContext from './Context'
+import  { CourseCategoryContext, useCategoryContext }from './Context'
 import { useNavContext } from '../Context/NavItemsContext'
 
 type Props = {}
@@ -19,6 +18,7 @@ type Props = {}
 const page = (props: Props) => {
 
     const [courses,setCourses]=useState<courseType[]>();
+    const [item,setItem]=useState<string>('all Courses');
     const context=useNavContext();
 
     useEffect(()=>{
@@ -35,31 +35,39 @@ const page = (props: Props) => {
    
 
   return (
-    <ItemContext >
+    
     <div className='lg:pt-[80px] lg:px-[90px]'>
         <div className=' w-full flex justify-start items-center lg:gap-x-3 lg:pb-4'>
             <Image src={logo} alt='' className='lg:w-[70px] lg:h-[70px]' />
             <h1 className='text-3xl font-bold text-gray-800'>Available courses in <span className='text-green-600'>AY-COURSES</span></h1>
         </div>  
+        <CourseCategoryContext.Provider value={{item,setItem}}>
        <SearchBar/>
+    
+
        <FilterBar >
                 <CourseCategory  category={'all Courses'} />
                 <CourseCategory  category={'backend courses'} />
-                <CourseCategory category={'frontend courses'} />
+                <CourseCategory  category={'frontend courses'} />
                 <CourseCategory  category={'AI courses'} />
                 <CourseCategory  category={'Flutter courses'} />
         </ FilterBar >
-        
+
             <Courses courses={courses}/>
+        </CourseCategoryContext.Provider>
+
+
+
         
+
     </div>
-    </ItemContext>
   )
 }
 
 export default page
 
 const SearchBar=()=>{
+    
     return <div 
             className='lg:px-[20px] lg:py-[30px] lg:h-[200px] lg:rounded-lg bg-gray-100 flex justify-between items-start relative'>
             <SearchBarRightPart />
@@ -68,10 +76,11 @@ const SearchBar=()=>{
 }
 
 const SearchBarRightPart=()=>{
+    const context=useCategoryContext()
     return <div className='lg:w-[45%] '>
         <h1 className='lg:font-semibold lg:text-xl lg:mb-[20px]'>What do you want to learn today ?</h1>
          <div className='lg:w-full relative bg-white lg:py-1 rounded-lg flex justify-start items-center lg:px-[10px] border border-gray-300'>
-            <input type="text" name="" id=""  className='w-[90%] lg:py-1 lg:px-2 border-transparent '/>
+            <input placeholder='Searsh for an courses category ' onChange={(e)=>{context.setItem(e.target.value)}}  type="text" name="" id=""  className='w-[90%] lg:py-1 lg:px-2 border-transparent '/>
              <div className='absolute right-1 px-2 py-2 top-[50%] -translate-y-[50%] bg-green-600  rounded-lg '>
              <FaSearch className='lg:text-xl text-white ' />
              </div>
@@ -100,19 +109,24 @@ const FilterBar=({children}:{children:ReactNode})=>{
     
 }
 const CourseCategory=({category}:{category:string})=>{
-    const context=useItemContext();
-
+    const context=useCategoryContext();
+  const checkCategory=useCallback(()=>{
+       const cat=context.item.split(' ')[0].toLowerCase();
+      return (category.toLocaleLowerCase().includes(cat) && cat !== '' )
+  },[context.item])
     
     
-     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${context.item ==category ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(category)}}>
+    
+     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${checkCategory() ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(category)}}>
          <p>{category}</p>
     </div>
 
 }
 
 const Courses=({courses}:{courses:courseType[] | undefined})=>{
+   
     const [filtredCourses,setFiltredCourses]=useState<courseType[]>();
-    const context=useItemContext();
+    const context=useCategoryContext();
     useEffect(()=>{
         if(courses){
             setFiltredCourses(courses)
@@ -130,7 +144,7 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
             const filtred=courses?.filter((course)=> course.title.toLowerCase().includes(category) || course.description.toLowerCase().includes(category))
             setFiltredCourses(filtred)
         }
-        console.log(context.item)
+        
     },[context.item])
 
     const displayCourses=useMemo(()=>{
@@ -167,7 +181,6 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
         
     },[filtredCourses])
     return <div className='lg:w-full lg:grid lg:grid-cols-4 lg:gap-[30px] lg:pt-[30px]'>
-        
                {displayCourses}
     </div>
 }
