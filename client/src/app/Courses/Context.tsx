@@ -1,4 +1,4 @@
-"use client"
+
 import React ,{Dispatch, ReactNode, useContext, useState} from 'react'
 import { createContext } from 'react';
 
@@ -21,3 +21,19 @@ export const useCategoryContext=()=>{
 }
 return context
 }
+ interface CourseOptionsContextType{
+    option:string,
+    setOption:React.Dispatch<React.SetStateAction<string>>;
+     
+}
+export const CourseOptionsContext=createContext<CourseOptionsContextType | null>(null);
+
+export const useCourseOptionsContext=()=>{
+  const context =useContext(CourseOptionsContext);
+  if(!context){
+    throw new Error ('No options')
+  }
+  return context
+}
+
+

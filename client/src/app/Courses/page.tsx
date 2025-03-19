@@ -12,6 +12,7 @@ import { BiSolidLike } from "react-icons/bi";
 import Link from 'next/link'
 import  { CourseCategoryContext, useCategoryContext }from './Context'
 import { useNavContext } from '../Context/NavItemsContext'
+import NoData from './CoursesComponents/NoData'
 
 type Props = {}
 
@@ -46,11 +47,13 @@ const page = (props: Props) => {
     
 
        <FilterBar >
+        
                 <CourseCategory  category={'all Courses'} />
                 <CourseCategory  category={'backend courses'} />
                 <CourseCategory  category={'frontend courses'} />
                 <CourseCategory  category={'AI courses'} />
                 <CourseCategory  category={'Flutter courses'} />
+              
         </ FilterBar >
 
             <Courses courses={courses}/>
@@ -111,8 +114,14 @@ const FilterBar=({children}:{children:ReactNode})=>{
 const CourseCategory=({category}:{category:string})=>{
     const context=useCategoryContext();
   const checkCategory=useCallback(()=>{
-       const cat=context.item.split(' ')[0].toLowerCase();
-      return (category.toLocaleLowerCase().includes(cat) && cat !== '' )
+       let cat=context.item.split(' ')[0].toLowerCase();
+       if(cat ===''){
+        cat='all'
+       }
+      if (category.toLocaleLowerCase().includes(cat) || cat.includes(category.toLocaleLowerCase()) ){
+            return true
+      }
+      
   },[context.item])
     
     
@@ -150,37 +159,39 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
     const displayCourses=useMemo(()=>{
 
 
-        if(filtredCourses){
-
-            return filtredCourses.map((course:courseType,key):ReactNode=>{
-                return <div className="col-span-1 lg:rounded-lg mb-10   " key={course.id} >
-                      <img src={course.image} alt='' className='lg:w-full lg:h-[150px] lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
-                      <div className='w-full lg:px-[10px] lg:py-[5px] '>
-                      <h1 className='font-semibold text-gray-500 lg:text-md lg:mb-2'>{course.title}</h1>
-                      <div className="lg:w-full flex justify-between items-center lg:mb-5">
-                       <p className='lg:text-sm font-semibold text-gray-600'>{course.publisher}</p>
-                           <div className='flex justify-end items-center gap-x-2'>
-                            <Rating numberT={course.likes}>
-                                <BiSolidLike className='text-xl text-gray-600' />
-                                </Rating>
-                                <Rating numberT={course.views}>
-                                <BiSolidLike className='text-xl text-gray-600' />
-                                </Rating>
-                           </div>
-                      </div>
-                      <Link href={''} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
-                         <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
-                         <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
-                      </Link>
-                      </div>
-                </div>
-            })
-        }else{
-            return ''
+        if( filtredCourses){
+            if(filtredCourses.length>0){
+                return filtredCourses.map((course:courseType,key):ReactNode=>{
+                    return <div className="col-span-1 lg:rounded-lg mb-10   " key={course.id} >
+                          <img src={course.image} alt='' className='lg:w-full lg:h-[150px] lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
+                          <div className='w-full lg:px-[10px] lg:py-[5px] '>
+                          <h1 className='font-semibold text-gray-500 lg:text-md lg:mb-2'>{course.title}</h1>
+                          <div className="lg:w-full flex justify-between items-center lg:mb-5">
+                           <p className='lg:text-sm font-semibold text-gray-600'>{course.publisher.name}</p>
+                               <div className='flex justify-end items-center gap-x-2'>
+                                <Rating numberT={course.likes}>
+                                    <BiSolidLike className='text-xl text-gray-600' />
+                                    </Rating>
+                                    <Rating numberT={course.views}>
+                                    <BiSolidLike className='text-xl text-gray-600' />
+                                    </Rating>
+                               </div>
+                          </div>
+                          <Link href={`Courses/${course.id}?cat=${context.item}`} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
+                             <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
+                             <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
+                          </Link>
+                          </div>
+                    </div>
+                }) 
+            }else{
+                return <NoData />
+            }
+            
         }
         
     },[filtredCourses])
-    return <div className='lg:w-full lg:grid lg:grid-cols-4 lg:gap-[30px] lg:pt-[30px]'>
+    return <div className='lg:w-full lg:grid lg:grid-cols-4 lg:gap-[30px] lg:pt-[30px] '>
                {displayCourses}
     </div>
 }
