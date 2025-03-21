@@ -6,7 +6,8 @@ export type courseType={
         views: number,
         publisher:publiser,
         image: string,
-        content:string[]
+        content:string[],
+        searchWords:string[]
 }
 type publiser={
         name:string,
