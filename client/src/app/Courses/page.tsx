@@ -37,15 +37,16 @@ const page = (props: Props) => {
 
   return (
     
-    <div className='lg:pt-[80px] lg:px-[90px]'>
-        <div className=' w-full flex justify-start items-center lg:gap-x-3 lg:pb-4'>
-            <Image src={logo} alt='' className='lg:w-[70px] lg:h-[70px]' />
-            <h1 className='text-3xl font-bold text-gray-800'>Available courses in <span className='text-green-600'>AY-COURSES</span></h1>
+    <div className='lg:pt-[80px] pt-[45px] px-[20px] lg:px-[90px]'>
+        <div className=' w-full flex justify-center items-center lg:gap-x-3 pb-3 lg:pb-3'>
+            <Image src={logo} alt='' className='w-[48px]  h-[48px] lg:w-[70px] lg:h-[70px]' />
+            <h1 className='text-md lg:text-3xl font-medium lg:font-bold text-gray-800'>Available courses in <span className='text-green-600'>AY-COURSES</span></h1>
         </div>  
+        <div className=' w-full  hidden  md:flex justify-center items-center lg:text-lg lg:font-semibold text-center font-medium'>
+             Master software develepment with structured courses designed to makke you job-easy
+        </div> 
         <CourseCategoryContext.Provider value={{item,setItem}}>
-       <SearchBar/>
     
-
        <FilterBar >
         
                 <CourseCategory  category={'all Courses'} />
@@ -53,6 +54,7 @@ const page = (props: Props) => {
                 <CourseCategory  category={'frontend courses'} />
                 <CourseCategory  category={'AI courses'} />
                 <CourseCategory  category={'Flutter courses'} />
+                
               
         </ FilterBar >
 
@@ -69,44 +71,30 @@ const page = (props: Props) => {
 
 export default page
 
-const SearchBar=()=>{
-    
-    return <div 
-            className='lg:px-[20px] lg:py-[30px] lg:h-[200px] lg:rounded-lg bg-gray-100 flex justify-between items-start relative'>
-            <SearchBarRightPart />
-            <SearchBarLeftPart /> 
-          </div>
-}
 
-const SearchBarRightPart=()=>{
-    const context=useCategoryContext()
-    return <div className='lg:w-[45%] '>
-        <h1 className='lg:font-semibold lg:text-xl lg:mb-[20px]'>What do you want to learn today ?</h1>
-         <div className='lg:w-full relative bg-white lg:py-1 rounded-lg flex justify-start items-center lg:px-[10px] border border-gray-300'>
-            <input placeholder='Searsh for an courses category ' onChange={(e)=>{context.setItem(e.target.value)}}  type="text" name="" id=""  className='w-[90%] lg:py-1 lg:px-2 border-transparent '/>
-             <div className='absolute right-1 px-2 py-2 top-[50%] -translate-y-[50%] bg-green-600  rounded-lg '>
-             <FaSearch className='lg:text-xl text-white ' />
-             </div>
-         </div>
-         <div className='lg:w-full flex justify-start items-center gap-x-4 lg:mt-[20px]'>
-            <p className='font-semibold'>Suggetions </p>
-            <p className='text-green-600 font-semibold'>AY-COURSES</p>
-            <p className='text-green-600 font-semibold'>AY-COURSES</p>
-         </div>
-    </div>
-}
 
-const SearchBarLeftPart=()=>{
-    return <Image src={svg} alt='' className='lg:w-[250px] lg:h-[250px] lg:absolute  lg:right-[100px] lg:top-[50%] lg:-translate-y-[50%]'/>
-        
-    
-}
+
 
 const FilterBar=({children}:{children:ReactNode})=>{
-    return <div className='lg:mt-[30px]'>
-        <h1 className='font-semibold lg:text-xl lg:mb-[20px]'>Recomended Courses</h1>
-        <div className='w-full flex justify-start items-center gap-x-4'>
+    const context =useCategoryContext()
+
+    useEffect(()=>{
+        console.log(context.item)
+    },[context.item])
+    return <div className='mt-[20px] lg:mt-[30px] md:px-[20px] lg:px-0 '>
+        <h1 className='font-semibold lg:text-2xl mb-[10px] lg:mb-[20px]'>Recomended Courses</h1>
+        <div className='w-full hidden lg:flex justify-start items-center gap-x-4 '>
              {children}
+        </div>
+        <div className='w-full flex   lg:hidden justify-start items-center gap-x-4 '>
+             <input className='px-[10px] py-[2px] border rounded-md' placeholder='search for courses' type="text" onChange={(e)=>{context.setItem(e.target.value)}} />
+             <select  onChange={(e)=>{context.setItem(e.target.value)}} name="" id="" className='cursor-pointer border px-[20px] py-[2px]'>
+                 <option   value="f" className='cursor-pointer '>all courses</option>
+                 <option  value="Frontend" className='cursor-pointer '>Frontend</option>
+                 <option  value="Backend" className='cursor-pointer '>Backend</option>
+                 <option  value="AI" className='cursor-pointer '>AI</option>
+                 <option  value="Full stack" className='cursor-pointer '>Full stack</option>
+             </select>
         </div>
     </div>
     
@@ -126,7 +114,7 @@ const CourseCategory=({category}:{category:string})=>{
     
     
     
-     return <div className={`lg:px-[8px]  lg:py-[2px]   lg:text-md  cursor-pointer ${checkCategory() ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(category)}}>
+     return <div className={`lg:px-[8px]  lg:py-[4px]   lg:text-md  cursor-pointer ${checkCategory() ? 'text-white bg-green-600':'text-green-600 bg-white border-green-600  border'}`} onClick={()=>{context.setItem(category)}}>
          <p>{category}</p>
     </div>
 
@@ -162,11 +150,12 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
         if( filtredCourses){
             if(filtredCourses.length>0){
                 return filtredCourses.map((course:courseType,key):ReactNode=>{
-                    return <div className="col-span-1 lg:rounded-lg mb-10   " key={course.id} >
-                          <img src={course.image} alt='' className='lg:w-full lg:h-[150px] lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
+                    return <div className="col-span-1 rounded-md lg:rounded-lg mb-4 lg:mb-10 w-[85%] lg:w-full mx-auto md:mx-0    " key={course.id} >
+                        
+                          <img src={course.image} alt='' className='w-full lg:w-full h-[150px] md:h-[200px] lg:h-[150px] rounded-md lg:rounded-none lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
                           <div className='w-full lg:px-[10px] lg:py-[5px] '>
                           <h1 className='font-semibold text-gray-500 lg:text-md lg:mb-2'>{course.title}</h1>
-                          <div className="lg:w-full flex justify-between items-center lg:mb-5">
+                          <div className="lg:w-full flex justify-between items-center mb-3 lg:mb-5">
                            <p className='lg:text-sm font-semibold text-gray-600'>{course.publisher.name}</p>
                                <div className='flex justify-end items-center gap-x-2'>
                                 <Rating numberT={course.likes}>
@@ -177,9 +166,9 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
                                     </Rating>
                                </div>
                           </div>
-                          <Link href={`Courses/${course.id}?cat=${context.item}`} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
-                             <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
-                             <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
+                          <Link href={`Courses/${course.id}?cat=${context.item}`} className='py-[0.5px] lg:py-[1px] bg-white border border-green-600 rounded-sm flex justify-center items-center w-[30%] lg:w-[70%] mx-auto px-[5px] lg:px-[10px]'>
+                             <Image src={logo} alt='' className='w-[20px]  h-[20px] lg:w-[30px] lg:h-[30px]' />
+                             <p className='text-md lg:text-lg font-medium lg:font-semibold text-green-600'>Brows </p>
                           </Link>
                           </div>
                     </div>
@@ -191,7 +180,7 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
         }
         
     },[filtredCourses])
-    return <div className='lg:w-full lg:grid lg:grid-cols-4 lg:gap-[30px] lg:pt-[30px] '>
+    return <div className='lg:w-full lg:grid grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 md:gap-[10px] lg:gap-[30px] md:px-[20px] lg:px-0 pt-[10px] lg:pt-[30px] '>
                {displayCourses}
     </div>
 }

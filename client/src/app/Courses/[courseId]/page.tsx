@@ -5,6 +5,11 @@ import { getCourses } from "@/app/getData";
 import { courseType } from "../../types";
 import { CourseOptionsContext, useCourseOptionsContext } from "../Context";
 import Link from "next/link";
+import { Rating } from '../../components/PopularCourses'
+import Image from "next/image";
+import logo from '../../../../public/Logo.png'
+import {BiSolidLike} from "react-icons/bi";
+
 type Props = {};
 
 const CourseDeatails = ({
@@ -39,7 +44,7 @@ const CourseDeatails = ({
            // console.log('--',csw)
             courseWords.map((cw)=>{
                // console.log(cw)
-                if(cw === csw && !d.find((course)=>course.id === c.id )){
+                if(cw.toLocaleLowerCase() === csw.toLocaleLowerCase() && !d.find((course)=>course.id === c.id )){
                     d.push(c)
                    
                 }
@@ -244,11 +249,29 @@ const SimilarCourses = ({
   const context = useCourseOptionsContext();
    console.log(similarCourses)
   const displaSimilarCourses=useMemo(()=>{
-    return similarCourses.map((course,key)=>{
-        return <Link href={`${course.id}?cat=${cat}`} className="col-span-1 " key={course.id}>
-            <h1>{course.title}</h1>
-        </Link>
-    })
+    return  similarCourses.map((course:courseType,key):ReactNode=>{
+        return <div className="col-span-1 lg:rounded-lg mb-10   " key={course.id} >
+              <img src={course.image} alt='' className='lg:w-full lg:h-[150px] lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
+              <div className='w-full lg:px-[10px] lg:py-[5px] '>
+              <h1 className='font-semibold text-gray-500 lg:text-md lg:mb-2'>{course.title}</h1>
+              <div className="lg:w-full flex justify-between items-center lg:mb-5">
+               <p className='lg:text-sm font-semibold text-gray-600'>{course.publisher.name}</p>
+                   <div className='flex justify-end items-center gap-x-2'>
+                    <Rating numberT={course.likes}>
+                        <BiSolidLike className='text-xl text-gray-600' />
+                        </Rating>
+                        <Rating numberT={course.views}>
+                        <BiSolidLike className='text-xl text-gray-600' />
+                        </Rating>
+                   </div>
+              </div>
+              <Link href={`${course.id}?cat=${cat}`} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
+                 <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
+                 <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
+              </Link>
+              </div>
+        </div>
+    }) 
   },[similarCourses])
 
   return (
