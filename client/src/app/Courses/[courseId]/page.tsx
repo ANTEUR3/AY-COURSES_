@@ -279,7 +279,7 @@ const SimilarCourses = ({
       className={`${context.option === "Similar courses" ? "" : "hidden"} `}
     >
         <h1 className="text-xl font-semibold  lg:mb-8 text-red-800">Similar courses</h1>
-        <div className="lg:w-full  grid grid-cols-4 lg:gap-[10px]">
+        <div className="lg:w-full  grid grid-cols-4 lg:gap-[18px]">
           {displaSimilarCourses}
       </div>
     </div>

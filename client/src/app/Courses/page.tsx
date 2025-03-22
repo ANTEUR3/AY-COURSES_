@@ -18,7 +18,7 @@ type Props = {}
 
 const page = (props: Props) => {
 
-    const [courses,setCourses]=useState<courseType[]>();
+    const [courses,setCourses]=useState<courseType[] >([]);
     const [item,setItem]=useState<string>('all Courses');
     const context=useNavContext();
 
@@ -120,28 +120,23 @@ const CourseCategory=({category}:{category:string})=>{
 
 }
 
-const Courses=({courses}:{courses:courseType[] | undefined})=>{
+const Courses=({courses}:{courses:courseType[] })=>{
    
-    const [filtredCourses,setFiltredCourses]=useState<courseType[]>();
+    const [filtredCourses,setFiltredCourses]=useState<courseType[]| undefined>(courses);
     const context=useCategoryContext();
+
     useEffect(()=>{
-        if(courses){
-            setFiltredCourses(courses)
-        }
+           setFiltredCourses(courses)
     },[courses])
+
     useEffect(()=>{
-      
-    },[])
-    useEffect(()=>{
-        if(context.item ==="all Courses"){
-            setFiltredCourses(courses);
+        if(context.item=== 'all Courses'){
+            setFiltredCourses(courses)
+        }else{
+            const category=context.item.split(' ')[0].toLocaleLowerCase();
+            const FC=courses.filter((c)=>c.searchWords.includes(category))
+            setFiltredCourses(FC)
         }
-        else{
-            const category=context.item.split(' ')[0].toLowerCase();
-            const filtred=courses?.filter((course)=> course.title.toLowerCase().includes(category) || course.description.toLowerCase().includes(category))
-            setFiltredCourses(filtred)
-        }
-        
     },[context.item])
 
     const displayCourses=useMemo(()=>{
@@ -151,7 +146,6 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
             if(filtredCourses.length>0){
                 return filtredCourses.map((course:courseType,key):ReactNode=>{
                     return <div className="col-span-1 rounded-md lg:rounded-lg mb-4 lg:mb-10 w-[85%] lg:w-full mx-auto md:mx-0    " key={course.id} >
-                        
                           <img src={course.image} alt='' className='w-full lg:w-full h-[150px] md:h-[200px] lg:h-[150px] rounded-md lg:rounded-none lg:rounded-tl-lg lg:rounded-tr-lg lg:mb-[7px]' />
                           <div className='w-full lg:px-[10px] lg:py-[5px] '>
                           <h1 className='font-semibold text-gray-500 lg:text-md lg:mb-2'>{course.title}</h1>
@@ -166,7 +160,7 @@ const Courses=({courses}:{courses:courseType[] | undefined})=>{
                                     </Rating>
                                </div>
                           </div>
-                          <Link href={`Courses/${course.id}?cat=${context.item}`} className='py-[0.5px] lg:py-[1px] bg-white border border-green-600 rounded-sm flex justify-center items-center w-[30%] lg:w-[70%] mx-auto px-[5px] lg:px-[10px]'>
+                          <Link href={`Courses/${course.id}?cat=${context.item}`} className='py-[0.5px] lg:py-[1px] bg-white hover:translate-x-[10px] border border-green-600 rounded-sm flex justify-center items-center w-[30%] lg:w-[70%] mx-auto px-[5px] lg:px-[10px]'>
                              <Image src={logo} alt='' className='w-[20px]  h-[20px] lg:w-[30px] lg:h-[30px]' />
                              <p className='text-md lg:text-lg font-medium lg:font-semibold text-green-600'>Brows </p>
                           </Link>
