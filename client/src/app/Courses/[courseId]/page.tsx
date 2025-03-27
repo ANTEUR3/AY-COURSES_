@@ -68,7 +68,7 @@ const CourseDeatails = ({
   const [option, setOption] = useState<string>("Description");
 
   return (
-    <div className="lg:pt-[80px] lg:px-[100px]">
+    <div className="lg:pt-[80px] pt-[55px] px-[20px] lg:px-[100px]">
       {course ? (
         <div>
           <Path>
@@ -79,7 +79,7 @@ const CourseDeatails = ({
           <img
             src={`${course.image}`}
             alt=""
-            className="lg:h-[170px] lg:w-[60%] mt-5 rounded-lg"
+            className="lg:h-[170px] h-[180px] w-[90%]   lg:w-[60%] mt-5 rounded-lg"
           />
           <CourseOptionsContext value={{ option, setOption }}>
             <CourseOptions>
@@ -88,6 +88,12 @@ const CourseDeatails = ({
               <OptionItem name="Teacher" />
               <OptionItem name="Similar courses" />
             </CourseOptions>
+            <CourseSelect>
+            <CourseSelectItem name="Description" />
+              <CourseSelectItem name="Course content" />
+              <CourseSelectItem name="Teacher" />
+              <CourseSelectItem name="Similar courses" />
+            </CourseSelect>
             <CourseDetailsBody>
               <CourseDescription course={course} />
               <CourseContent course={course} />
@@ -113,13 +119,13 @@ const Path = ({ children }: { children: ReactNode }) => {
 
 const PathItem = ({ name, color }: { name: string; color: string }) => {
   return (
-    <h1 className={`font-semibold lg:text-lg text-${color}-600`}>{name}</h1>
+    <h1 className={`font-semibold text-md lg:text-lg text-${color}-600`}>{name}</h1>
   );
 };
 
 const CourseOptions = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="lg:w-full flex justify-start items-center lg:gap-x-4 lg:font-semibold lg:text-lg text-gray-500 lg:mt-3">
+    <div className="lg:w-full lg:flex justify-start items-center gap-x-4 font-semibold lg:text-lg text-gray-500 mt-3 hidden ">
       {children}
     </div>
   );
@@ -130,7 +136,7 @@ const OptionItem = ({ name }: { name: string }) => {
     <h2
       className={`${
         context.option === name ? "text-gray-950" : ""
-      } cursor-pointer hover:text-gray-700`}
+      } cursor-pointer hover:text-gray-700 text-[10px] lg:text-lg`}
       onClick={() => {
         context.setOption(name);
       }}
@@ -140,8 +146,23 @@ const OptionItem = ({ name }: { name: string }) => {
   );
 };
 
+const CourseSelect = ({ children }: { children: ReactNode }) => {
+  const context=useCourseOptionsContext();
+
+  return (
+    <select onChange={(e)=>{context.setOption(e.target.value)}} className="lg:w-full flex justify-start items-center gap-x-4 font-semibold lg:text-lg text-gray-500 mt-3 lg:hidden ">
+      {children}
+    </select>
+  );
+};
+
+const CourseSelectItem=({name}:{name:string})=>{
+  const context=useCourseOptionsContext();
+   return <option value={name}>{name}</option>
+}
+
 const CourseDetailsBody = ({ children }: { children: ReactNode }) => {
-  return <div className="lg:w-full lg:pt-7">{children}</div>;
+  return <div className="lg:w-full pt-4 lg:pt-7">{children}</div>;
 };
 
 const CourseDescription = ({ course }: { course: courseType }) => {
@@ -265,8 +286,8 @@ const SimilarCourses = ({
                         </Rating>
                    </div>
               </div>
-              <Link href={`${course.id}?cat=${cat}`} className=' lg:py-[1px] bg-white border border-green-600 lg:rounded-sm flex justify-center items-center  lg:w-[70%] mx-auto lg:px-[10px]'>
-                 <Image src={logo} alt='' className='lg:w-[30px] lg:h-[30px]' />
+              <Link href={`${course.id}?cat=${cat}`} className=' lg:py-[1px] bg-white border border-green-600 rounded-sm flex justify-center items-center  w-[70%] mx-auto lg:px-[10px] mt-1'>
+                 <Image src={logo} alt='' className='w-[20px]  h-[20px] lg:w-[30px] lg:h-[30px]' />
                  <p className='lg:text-lg font-semibold text-green-600'>Brows </p>
               </Link>
               </div>
@@ -279,7 +300,7 @@ const SimilarCourses = ({
       className={`${context.option === "Similar courses" ? "" : "hidden"} `}
     >
         <h1 className="text-xl font-semibold  lg:mb-8 text-red-800">Similar courses</h1>
-        <div className="lg:w-full  grid grid-cols-4 lg:gap-[18px]">
+        <div className="lw-full  grid grid-cols-1 lg:grid-cols-4 lg:gap-[18px]">
           {displaSimilarCourses}
       </div>
     </div>

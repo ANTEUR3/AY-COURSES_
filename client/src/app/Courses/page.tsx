@@ -50,10 +50,10 @@ const page = (props: Props) => {
        <FilterBar >
         
                 <CourseCategory  category={'all Courses'} />
-                <CourseCategory  category={'backend courses'} />
-                <CourseCategory  category={'frontend courses'} />
-                <CourseCategory  category={'AI courses'} />
-                <CourseCategory  category={'Flutter courses'} />
+                <CourseCategory  category={'Backend'} />
+                <CourseCategory  category={'Frontend'} />
+                <CourseCategory  category={'Mobile'} />
+                <CourseCategory  category={'Programming language '} />
                 
               
         </ FilterBar >
@@ -92,8 +92,8 @@ const FilterBar=({children}:{children:ReactNode})=>{
                  <option   value="f" className='cursor-pointer '>all courses</option>
                  <option  value="Frontend" className='cursor-pointer '>Frontend</option>
                  <option  value="Backend" className='cursor-pointer '>Backend</option>
-                 <option  value="AI" className='cursor-pointer '>AI</option>
-                 <option  value="Full stack" className='cursor-pointer '>Full stack</option>
+                 <option  value="Mobile" className='cursor-pointer '>Mobile</option>
+                 <option  value="Programming language" className='cursor-pointer '>Programming language</option>
              </select>
         </div>
     </div>
