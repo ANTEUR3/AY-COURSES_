@@ -1,5 +1,5 @@
 import http from 'http';
-import { Students,Courses } from '../server/ProjectData.js';
+import { Students,Courses,projectsIdea } from '../server/ProjectData.js';
 
 
 
@@ -17,10 +17,17 @@ const server  = http.createServer((req,res)=>{
             
             res.end();
         
-    }else if(req.url === '/'){
+    }else if(req.url === '/api/sm'){
         res.writeHead(200,{'Content-Type':'application/json'});
+        let sm=req.body.sm;
         res.write(JSON.stringify({name:'YOUNES'}))
         res.end();
+    }else if(req.url === '/api/ProjectsIdeas'){
+        res.writeHead(200,{'Content-Type':'application/json'});
+            
+            res.write(JSON.stringify(projectsIdea))
+            
+            res.end();
     }
     else{
         res.writeHead(404,{'Content-Type':'application/json'});
