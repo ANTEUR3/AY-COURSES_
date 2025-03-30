@@ -15,3 +15,13 @@ type publiser={
         image:string,
         description:string
 }
+
+type ProjectIdea={
+        id:number,
+        title:string,
+        description:string,
+        level:string,
+        requirements:string[],
+        image:string,
+        period:number[]
+}

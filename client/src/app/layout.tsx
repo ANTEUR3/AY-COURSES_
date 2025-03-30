@@ -35,6 +35,8 @@ export default function RootLayout({
            <NavItem href="/" index={0} name='Home' />
            <NavItem href="/Courses" index={1} name='Courses' />
            <NavItem href="/" index={2} name='Contacts' />
+           <NavItem href="/Projects" index={3} name='Projects' />
+
           </NavBar>
          
             {children}

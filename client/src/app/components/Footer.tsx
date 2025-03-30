@@ -16,7 +16,7 @@ const Footer = (props: Props) => {
         <FooterContact/>
 
         </div>
-        <div className='bg-gray-900 flex justify-center items-center lg:py-[3px] text-white font-bold lg:text-lg mt-5'>
+        <div className='bg-gray-900 flex justify-center items-center lg:py-[3px] py-[2px] text-white font-bold lg:text-lg mt-5'>
             All Rights Reserved
 
         </div>
