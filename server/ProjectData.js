@@ -212,7 +212,7 @@ export const projectsIdea=[
     {
         id:1,
         title:'HTML and Css Home page',
-        description:'Create a modern  page using HTML5 semantic elements and CSS3 features. Learn to implement flex box layouts, CSS Grid, animations, and media queries for mobile-first design. Perfect project for beginners to practice fundamental web development skills.',
+        description:'Create a modern  page using HTML5 semantic elements and CSS3 features. Learn to implement flex box layouts, CSS Grid, animations, and media queries for mobile-first design.',
         level:'beginner',
         requirements:['HTML','CSS'],
         image:'https://i.pinimg.com/736x/41/6b/13/416b13ac4afab4530987b884d1b5cfa0.jpg',
@@ -221,7 +221,7 @@ export const projectsIdea=[
     {
         id:2,
         title:'Todo application',
-        description:'Build an interactive todo list application that allows users to add, edit, delete and mark tasks as complete. Implement data persistence using local storage, task filtering, and drag-and-drop reordering. Great project to practice DOM manipulation and JavaScript event handling.',
+        description:'Build an interactive todo list application that allows users to add, edit, delete and mark tasks as complete. Implement data persistence using local storage, task filtering, and drag-and-drop reordering.',
         level:'meduim',
         requirements:['HTML','CSS', 'JavaScript'],
         image:'https://i.pinimg.com/736x/6e/48/0f/6e480f721de6b29b93bdb1322a14b183.jpg',
@@ -231,7 +231,7 @@ export const projectsIdea=[
     {
         id: 3,
         title: 'E-commerce Dashboard',
-        description: 'Develop a full-featured e-commerce admin dashboard with user authentication, product management, order tracking, and sales analytics. Implement charts for data visualization, inventory management system, and customer database. Excellent project to showcase full-stack development skills.',
+        description: 'Develop a full-featured e-commerce admin dashboard with user authentication, product management, order tracking, and sales analytics. Implement charts for data visualization, inventory management system, and customer database.',
         level: 'advanced',
         requirements: ['React', 'Node.js', 'MongoDB', 'Express'],
         image: 'https://i.pinimg.com/736x/41/6b/13/416b13ac4afab4530987b884d1b5cfa0.jpg',
@@ -240,11 +240,89 @@ export const projectsIdea=[
     {
         id:4,
         title: 'Store managment',
-        description:'Build a comprehensive store management system with inventory tracking, sales processing, and reporting features. Implement real-time stock updates, barcode scanning functionality, supplier management, and automated reordering systems. Perfect for demonstrating database design and business logic implementation skills.',
+        description:'Build a comprehensive store management system with inventory tracking, sales processing, and reporting features. Implement real-time stock updates, barcode scanning functionality, supplier management, and automated reordering systems.',
         level: 'advanced',
         requirements: ['Laravel', 'PHP', 'mysql', 'Databases','socket.io'],
         image: 'https://i.pinimg.com/736x/5e/39/db/5e39dbe6d8da4a0d35e254cc06e6caa1.jpg',
         period: [0, 0, 1]
     },
     
+]
+
+
+export const Exams=[
+    {
+        id:1,
+        title:'Javascript baics',
+        image:'https://i.pinimg.com/736x/0e/4f/dc/0e4fdce8ac22e09688c580e5bc4dcd7d.jpg',
+        level:'beginner',
+        questions:10,
+        description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
+    },
+    {
+        id:2,
+        title:'React js',
+        image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg',
+        level:'meduim',
+        questions:15,
+        description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
+
+    },
+    {
+        id:3,
+        title:'Kotlin',
+        image:'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg',
+        level:'meduim',
+        questions:15,
+        description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
+
+    },
+    {
+        id:4,
+        title:'Django',
+        image:'https://i.pinimg.com/736x/13/c7/b2/13c7b21f18ccc0825070c2e4faa1f0e9.jpg',
+        level:'meduim',
+        questions:15,
+        description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
+
+    }
+]
+
+
+export const Questions=[
+    {
+        id:1,
+        exam:1,
+        question:'Which of the following is used to declare a variable in JavaScript?',
+        suggetions:['var','declare','variable','v'],
+        answer:0
+    },
+    {
+        id:2,
+        exam:1,
+        question:'What is the correct way to write a JavaScript comment?',
+        suggetions:['#comment','<!--comment-->','//comment','**comment**'],
+        answer:2
+    },
+    {
+        id:3,
+        exam:1,
+        question:'Which operator is used for equality comparison in JavaScript?',
+        suggetions:[':=','=','==','==='],
+        answer:2
+    },
+    {
+        id:4,
+        exam:1,
+        question:'What is the correct way to write "Hello World" in an alert box?',
+        suggetions:['msg("Hello World")','alertBox("Hello World")','alert("Hello World")','msgBox("Hello World")'],
+        answer:2
+    },
+    {
+        id:5,
+        exam:1,
+        question:'What will console.log(typeof "42") return?',
+        suggetions:['number','string','boolean','undefined'],
+        answer:1
+    }
 ]

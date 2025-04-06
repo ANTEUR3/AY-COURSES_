@@ -1,5 +1,5 @@
 import http from 'http';
-import { Students,Courses,projectsIdea } from '../server/ProjectData.js';
+import { Students,Courses,projectsIdea,Exams } from '../server/ProjectData.js';
 
 
 
@@ -27,6 +27,11 @@ const server  = http.createServer((req,res)=>{
             
             res.write(JSON.stringify(projectsIdea))
             
+            res.end();
+    }else if(req.url === '/api/Exams'){
+        res.writeHead(200,{'Content-Type':'application/json'});
+            
+            res.write(JSON.stringify(Exams))
             res.end();
     }
     else{
