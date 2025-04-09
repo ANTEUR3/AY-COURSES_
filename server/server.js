@@ -1,5 +1,5 @@
 import http from 'http';
-import { Students,Courses,projectsIdea,Exams } from '../server/ProjectData.js';
+import { Students,Courses,projectsIdea,Exams,Questions } from '../server/ProjectData.js';
 
 
 
@@ -33,6 +33,33 @@ const server  = http.createServer((req,res)=>{
             
             res.write(JSON.stringify(Exams))
             res.end();
+    }
+    else if(req.url === '/api/Questions'){
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+        
+        // Process the complete request body
+        req.on('end', () => {
+            try {
+                // Parse JSON body
+                const parsedBody = JSON.parse(body);
+                const { id } = parsedBody; // Now you can destructure from the parsed body
+                
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                const questions=Questions.filter((q)=>q.exam==id)
+             
+                const exam=Exams.find((e)=>e.id==id)
+                console.log(questions)
+                res.write(JSON.stringify({ questions,exam }));
+                res.end();
+            } catch (error) {
+                // Handle JSON parsing error
+                res.writeHead(400, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({ error: 'Invalid JSON' }));
+            }});
     }
     else{
         res.writeHead(404,{'Content-Type':'application/json'});

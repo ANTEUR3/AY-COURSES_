@@ -285,6 +285,15 @@ export const Exams=[
         questions:15,
         description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
 
+    },
+    {
+        id:5,
+        title:'Flask',
+        image:'https://i.pinimg.com/736x/13/c7/b2/13c7b21f18ccc0825070c2e4faa1f0e9.jpg',
+        level:'meduim',
+        questions:15,
+        description: 'Test your fundamental JavaScript knowledge with questions covering variables, operators, data types, and basic syntax. Perfect for beginners starting their programming journey.',
+
     }
 ]
 
@@ -295,34 +304,218 @@ export const Questions=[
         exam:1,
         question:'Which of the following is used to declare a variable in JavaScript?',
         suggetions:['var','declare','variable','v'],
-        answer:0
+        answer:1,
+        image:'https://i.pinimg.com/736x/6c/27/7d/6c277d023334ab09cbca800b785e617f.jpg'
     },
     {
         id:2,
         exam:1,
         question:'What is the correct way to write a JavaScript comment?',
         suggetions:['#comment','<!--comment-->','//comment','**comment**'],
-        answer:2
+        answer:2,
+        image:'https://i.pinimg.com/736x/6c/27/7d/6c277d023334ab09cbca800b785e617f.jpg'
+
     },
     {
         id:3,
         exam:1,
         question:'Which operator is used for equality comparison in JavaScript?',
         suggetions:[':=','=','==','==='],
-        answer:2
+        answer:2,
+        image:'https://i.pinimg.com/736x/6c/27/7d/6c277d023334ab09cbca800b785e617f.jpg'
+
     },
     {
         id:4,
         exam:1,
         question:'What is the correct way to write "Hello World" in an alert box?',
         suggetions:['msg("Hello World")','alertBox("Hello World")','alert("Hello World")','msgBox("Hello World")'],
-        answer:2
+        answer:2,
+        image:'https://i.pinimg.com/736x/6c/27/7d/6c277d023334ab09cbca800b785e617f.jpg'
+
     },
     {
         id:5,
         exam:1,
         question:'What will console.log(typeof "42") return?',
         suggetions:['number','string','boolean','undefined'],
-        answer:1
+        answer:1,
+        image:'https://i.pinimg.com/736x/6c/27/7d/6c277d023334ab09cbca800b785e617f.jpg'
+
     }
+    ,
+    {
+        id:6,
+        exam:2,
+        question:'What is the correct way to create a React component?',
+        suggetions:[
+            'class Component { }',
+            'function Component() { }',
+            'class Component extends React.Component { }',
+            'const Component = () => { }'
+        ],
+        answer:2,
+        image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+    }
+    ,
+        {
+            id:7,
+            exam:2,
+            question:'What hook is used to manage state in functional components?',
+            suggetions:['useEffect','useState','useContext','useReducer'],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:8,
+            exam:2,
+            question:'How do you pass data from parent to child component?',
+            suggetions:['State','Context','Props','Hooks'],
+            answer:2,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:9,
+            exam:2,
+            question:'What is the virtual DOM?',
+            suggetions:[
+                'A direct copy of the real DOM',
+                'A lightweight copy of the real DOM',
+                'The actual browser DOM',
+                'A DOM database'
+            ],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:10,
+            exam:2,
+            question:'Which hook is used for side effects in React?',
+            suggetions:['useState','useEffect','useContext','useReducer'],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:11,
+            exam:2,
+            question:'What is the correct way to conditionally render in React?',
+            suggetions:[
+                'if-else statements',
+                'switch statements',
+                'ternary operators',
+                'All of the above'
+            ],
+            answer:3,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:12,
+            exam:2,
+            question:'How do you prevent default form submission in React?',
+            suggetions:[
+                'event.preventDefault()',
+                'event.stopPropagation()',
+                'return false',
+                'event.stop()'
+            ],
+            answer:0,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:13,
+            exam:2,
+            question:'What is the purpose of keys in React lists?',
+            suggetions:[
+                'Styling elements',
+                'Unique identification',
+                'Data binding',
+                'Event handling'
+            ],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:14,
+            exam:2,
+            question:'Which method is called after a component mounts?',
+            suggetions:[
+                'componentWillMount',
+                'componentDidMount',
+                'componentMounted',
+                'onMount'
+            ],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:15,
+            exam:2,
+            question:'What is React Context used for?',
+            suggetions:[
+                'Local state management',
+                'Global state management',
+                'Route management',
+                'Form handling'
+            ],
+            answer:1,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id:16,
+            exam:2,
+            question:'What is the correct way to update state in React?',
+            suggetions:[
+                'this.state.value = newValue',
+                'setState(newValue)',
+                'this.setState({value: newValue})',
+                'state.value = newValue'
+            ],
+            answer:2,
+            image:'https://i.pinimg.com/736x/b4/86/f5/b486f569306d7ed7f32f6893387699e6.jpg'
+        },
+        {
+            id: 17,
+            exam: 3,
+            question: 'What is the correct way to declare a variable in Kotlin?',
+            suggetions: ['var', 'let', 'const', 'def'],
+            answer: 0,
+            image: 'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg'
+        },
+        {
+            id: 18,
+            exam: 3,
+            question: 'Which keyword is used for null safety in Kotlin?',
+            suggetions: ['?', '!', 'null', 'safe'],
+            answer: 0,
+            image: 'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg'
+        },
+        {
+            id: 19,
+            exam: 3,
+            question: 'What is the difference between val and var in Kotlin?',
+            suggetions: [
+                'val is mutable, var is immutable',
+                'val is immutable, var is mutable',
+                'They are the same',
+                'val is for functions, var is for variables'
+            ],
+            answer: 1,
+            image: 'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg'
+        },
+        {
+            id: 20,
+            exam: 3,
+            question: 'What is the Kotlin extension for source files?',
+            suggetions: ['.kt', '.kotlin', '.kl', '.ktl'],
+            answer: 0,
+            image: 'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg'
+        },
+        {
+            id: 21,
+            exam: 3,
+            question: 'Which function is the entry point of a Kotlin program?',
+            suggetions: ['start()', 'run()', 'main()', 'init()'],
+            answer: 2,
+            image: 'https://i.pinimg.com/736x/bf/f6/92/bff692e4cdd65fffc34183f9c04f4489.jpg'
+        }
 ]
